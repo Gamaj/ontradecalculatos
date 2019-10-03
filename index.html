@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Caluladora</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
+        <script type="text/javascript" src="code.js"></script>
+        
+</head>
+
+<body onload="estratos() ;">
+
+
+        <div class="container">
+                <div class="row">
+                        <div class="col">
+
+                        </div>
+                        <div class="col-6">
+                                <img src="DIAGEO.jpg" alt="Avatar" width="500" height="170">
+                                <h1 class="text-center">Calculadora OnTrade</h1>
+                                <div class="input-group">
+                                        <div class="input-group-prepend">
+                                                <span class="input-group-text">Estrato</span>
+                                        </div>
+                                        <select id="estrato" onchange="estratos()" class="custom-select">
+                                                <option selected>Seleccione estrato</option>
+                                                <option value="1">2 y 3</option>
+                                                <option value="2">4, 5 y 6</option>
+                                        </select>
+
+                                </div> <br>
+                                <div class="input-group">
+
+                                        <div class="input-group-prepend">
+                                                <span class="input-group-text">Subsegmento</span>
+                                        </div>
+                                        <select id="Subsegmento" class="custom-select">
+                                                <option selected>Seleccione Subsegmento</option>
+
+                                        </select>
+                                </div><br>
+
+                                <div class="input-group">
+
+                                        <div class="input-group-prepend">
+                                                <span class="input-group-text">Source of volumen</span>
+                                        </div>
+                                        <select id="SourceOfVolume" onchange="servicios()" class="custom-select">
+                                                <option selected>Seleccione Source of Volume</option>
+                                                <option value="1">Cerverza</option>
+                                                <option value="2">Destilado Nacional</option>
+                                                <option value="3">Destilado Importado</option>
+                                        </select>
+                                </div><br>
+                                <div class="input-group">
+
+                                        <div class="input-group-prepend">
+                                                <span class="input-group-text">Servicio</span>
+                                        </div>
+                                        <select id="servicios" class="custom-select">
+                                                <option selected>Seleccione Servicio</option>
+                                        </select>
+                                </div><br>
+                                <div class="text-center">
+                                        
+                                        <button onclick="window.location.href='Productos.html?servicio=' + document.getElementById('servicios').value " type="button"
+                                                class="btn btn-danger center-block">Calcular</button>
+                                </div><br>
+                        </div>
+                        <div class="col">
+
+                        </div>
+                </div>
+        </div>
+
+</body>
+
+</html>
