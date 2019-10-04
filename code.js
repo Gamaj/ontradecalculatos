@@ -108,8 +108,9 @@ function CargaProductos() {
     var c = url.searchParams;*/
     var url_string = window.location.href
     var url = new URL(url_string);
-    var c = url.searchParams.get("servicio");
+   // var c = url.searchParams.get("servicio");
     var alternativa = "JOHNNIE RED & LEMON";
+    var c= alternativa;
     if (c == "JOHNNIE RED "){
         c=alternativa;
     }
@@ -187,11 +188,7 @@ function addRowProd(elementos){
     cell4.contentEditable = "true";
     cell4.style.backgroundColor ="#EEFFA1";
     cell4.innerHTML = precioVenta;
-    
     cell5.innerHTML = "";
-
-
-
 }
 
 /*
@@ -204,7 +201,6 @@ function readTextFile() {
       let lines = content.split(/\n/);
       lines.forEach(line => console.log(line));
     });
-
 }*/
 
 function readTextFile()
@@ -243,15 +239,25 @@ function myFunction() {
         table.rows[i].cells[4].innerHTML = cal;
     }
 
+    var ingredientes = document.getElementById("Ingredientes");
+
+    var i;
+    for (i = ingredientes.rows.length - 1; i >= 0; i--) {
+        if ( i != 0){
+            
+            ingredientes.deleteRow(12);
+            console.log(i);
+         //   if (ingredientes.rows[i].value != null){
+               // console.log(ingredientes.rows[i].value);
+         //   }
+            
+        }
+
+    }
+
     /*   var row = table.insertRow(0);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         cell1.innerHTML = "Hola";
         cell2.innerHTML = "NEW CELL2";*/
-
-    var url_string = window.location.href
-    var url = new URL(url_string);
-    var c = url.searchParams.get("servicio");
-    console.log(c);
 }
-
