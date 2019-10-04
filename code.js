@@ -81,7 +81,7 @@ function servicios() {
         option.text = "JOHNNIE RED & LEMON";
         y.add(option);
         option = document.createElement("option");
-        option.text = "GORDON´S TONIC";
+        option.text = "GORDONS TONIC";
         y.add(option);
     } else if (x.value == '2') {
         var option = document.createElement("option");
@@ -108,8 +108,11 @@ function CargaProductos() {
     var c = url.searchParams;*/
     var url_string = window.location.href
     var url = new URL(url_string);
-   // var c = url.searchParams.get("servicio");
-    var c = "JOHNNIE RED & LEMON";
+    var c = url.searchParams.get("servicio");
+    var alternativa = "JOHNNIE RED & LEMON";
+    if (c == "JOHNNIE RED "){
+        c=alternativa;
+    }
     console.log(c);
     rawFile.open("GET", "receta.txt", false);
     rawFile.onreadystatechange = function ()
