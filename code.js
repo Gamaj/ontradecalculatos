@@ -221,10 +221,29 @@ function readTextFile()
     rawFile.send(null);
 }
 
+function calcRentabilidad(){
+    var table = document.getElementById("Ingredientes");
+    var calc;
+    var suma = 0;
+    for (var i = 1; i < table.rows.length - 9 ; i++) {
+        calc = table.rows[i].cells;
+        cal = calc[2].innerHTML * calc[3].innerHTML;
+        table.rows[i].cells[4].innerHTML = cal;
+        suma = suma + cal;
+    }
+    var i = table.rows.length - 9;
+    var costopro = suma + (suma * 0.05) ;
+    table.rows[i].cells[2].innerHTML = suma;
+    table.rows[i+2].cells[1].innerHTML = suma * 0.05;
+    table.rows[i+3].cells[1].innerHTML = costopro;
+   // table.rows[i].cells[4].innerHTML = suma;
+    console.log(table.rows[i].cells[1].innerHTML);
+
+
+}
+
 
 function myFunction() {
-
-    
     var table = document.getElementById("Prod");
     var calc = table.rows[1].cells;
     var cal = calc[3].innerHTML / calc[2].innerHTML;
@@ -242,19 +261,37 @@ function myFunction() {
     var ingredientes = document.getElementById("Ingredientes");
 
     var i;
-    for (i = ingredientes.rows.length - 1; i >= 0; i--) {
-        if ( i != 0){
-            
-            ingredientes.deleteRow(12);
-            console.log(i);
-         //   if (ingredientes.rows[i].value != null){
-               // console.log(ingredientes.rows[i].value);
-         //   }
-            
+    for (i = ingredientes.rows.length - 10; i >= 0; i--) {
+        if ( i != 0){         
+            ingredientes.deleteRow(i);
         }
 
     }
+    var nombre = "";
+    var unMedida = "";
+    var cant = "";
+    for (var i = 1; i < table.rows.length; i++) {
+        nombre = table.rows[i].cells[0].innerHTML;
+        unMedida = table.rows[i].cells[1].innerHTML;
+        cant = "";
+        vlrUn = table.rows[i].cells[4].innerHTML;
+        var x = ingredientes.rows.length - 9;
+        var row = ingredientes.insertRow(x);
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        var cell4 = row.insertCell(4);
+        cell0.innerHTML = nombre;
+        cell1.innerHTML = unMedida;
+        cell2.contentEditable = "true";
+        cell2.style.backgroundColor ="#EEFFA1";
+        cell3.innerHTML = vlrUn;
+        cell4.innerHTML = "";
+    }
 
+
+    
     /*   var row = table.insertRow(0);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
