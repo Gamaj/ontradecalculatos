@@ -110,7 +110,7 @@ function CargaProductos() {
     var url_string = window.location.href
     var url = new URL(url_string);
    // var c = url.searchParams.get("servicio");
-    var alternativa = "JOHNNIE RED & LEMON";
+    var alternativa = "GORDONS TONIC";
     var c= alternativa;
     if (c == "JOHNNIE RED "){
         c=alternativa;
@@ -253,6 +253,14 @@ function myFunction() {
     console.log(cal);
     calc[4].innerHTML = cal;
     console.log(cal);
+    var url_string = window.location.href
+    var url = new URL(url_string);
+   // var c = url.searchParams.get("servicio");
+    var alternativa = "GORDONS TONIC";
+    var c= alternativa;
+    if (c == "JOHNNIE RED "){
+        c=alternativa;
+    }
     // const cal = 0;
 
     for (var i = 1; i < table.rows.length; i++) {
@@ -290,8 +298,9 @@ function myFunction() {
         cell1.innerHTML = unMedida;
         cell2.contentEditable = "true";
         cell2.style.backgroundColor ="#EEFFA1";
+        cell2.innerHTML =getCantProd(nombre,c);
         cell3.innerHTML = vlrUn;
-        cell4.innerHTML = "";
+        cell4.innerHTML ="";
     }
 
 
@@ -301,6 +310,84 @@ function myFunction() {
         var cell2 = row.insertCell(1);
         cell1.innerHTML = "Hola";
         cell2.innerHTML = "NEW CELL2";*/
+}
+
+function getCantProd(nombreProducto,nombreReceta){
+    var rawFile = new XMLHttpRequest();
+    var cant;
+    
+    rawFile.open("GET", "Cantidades.txt", false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                var linea = allText.split("\n");
+
+                for (var i = 0; i<linea.length ; i++){
+
+                    var separado = linea[i].split("-");
+                    if(nombreReceta == separado[0]){
+                        if(nombreProducto == "Precio"){
+                            return separado[2];
+                        }else{
+                            var idprod = getIdProd(nombreProducto);
+                     //       console.log(idprod);
+                            products = separado[1].split(",");
+                            for (var j = 0 ; j<products.length; j++ ){
+                                var subnivel = products[j].split(";");
+                              //  console.log(subnivel[0]);
+                                if (subnivel[0]==idprod){
+                                    cant = subnivel[1];
+                                  //  console.log(subnivel[0] + " . " + subnivel[1]);
+                                    return subnivel[1];
+                                }
+                            }
+                        }
+                    }
+                                  
+                }
+                
+            }
+        }
+    }
+    rawFile.send(null);
+    return cant;
+
+
+}
+
+function getIdProd(nombre){
+    var rawFile = new XMLHttpRequest();
+    var global1;
+    rawFile.open("GET", "Prodcuto.csv", false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                var linea = allText.split("\n");
+                for (var i = 0; i<linea.length ; i++){
+
+                    var separado = linea[i].split(",");
+                    if(nombre == separado[1]){
+                      //  console.log("getId " + separado[0] );
+                        global1=separado[0];
+                        return separado[0];
+                            
+                    }
+           
+                }
+                
+            }
+        }
+    }
+    rawFile.send(null);
+    return global1;
 }
  //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_includes
  //https://www.w3schools.com/jsref/jsref_includes.asp
