@@ -115,6 +115,8 @@ function CargaProductos() {
     if (c == "JOHNNIE RED "){
         c=alternativa;
     }
+    addSourceOfVolume();
+    calcularRentabilidadSOF();
     console.log(c);
     rawFile.open("GET", "receta.txt", false);
     rawFile.onreadystatechange = function ()
@@ -129,6 +131,7 @@ function CargaProductos() {
 
                     var separado = linea[i].split(";");
                     if(c == separado[0]){
+                        addReceta(separado[2]);
                         searchProducts(separado[1]);
                     }
                     
@@ -138,6 +141,66 @@ function CargaProductos() {
         }
     }
     rawFile.send(null);
+}
+function addSourceOfVolume(){
+    var rawFile = new XMLHttpRequest();
+    var url_string = window.location.href
+    var url = new URL(url_string);
+   // var c = url.searchParams.get("source");
+   var c = '1';
+    rawFile.open("GET", "sourceOfVolume.txt", false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                var linea = allText.split("\n");
+                for (var i = 0; i<linea.length ; i++){
+
+                    var separado = linea[i].split(";");
+                    if(c == separado[0]){
+                        var table = document.getElementById("SofVolume");
+                        table.rows[0].cells[0].innerHTML = "RENTABILIDAD " + separado[5];
+                        var row = table.insertRow(2);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        var cell3 = row.insertCell(2);
+                        var cell4 = row.insertCell(3);
+                        var cell5 = row.insertCell(4);
+                        var cell6 = row.insertCell(5);
+                        cell1.innerHTML = separado[1];
+                        cell2.innerHTML = separado[2];
+                        cell2.contentEditable = "true";
+                        cell2.style.backgroundColor ="#EEFFA1";
+                        cell3.innerHTML = separado[3];
+                        cell4.innerHTML = separado[4];
+                        cell4.contentEditable = "true";
+                        cell4.style.backgroundColor ="#EEFFA1";
+                        cell5.innerHTML = separado[2]/separado[4];
+                        cell6.innerHTML = separado[2];
+                       
+                        document.getElementById("SofVolume").rows[10].cells[1].innerHTML = separado[6];
+                    document.getElementById("observaciones").innerHTML = separado[7];
+                        
+                        
+                    } 
+                }
+                
+            }
+        }
+    }
+    rawFile.send(null);
+
+
+}
+
+function addReceta(preparacion){
+    var table = document.getElementById("Ingredientes");
+    table.rows[2].cells[0].innerHTML = preparacion;
+
+
 }
 function searchProducts(x){
     var rawFile = new XMLHttpRequest();
@@ -235,7 +298,7 @@ function calcRentabilidad(){
     }
     var i = table.rows.length - 9;
     var costopro = suma + (suma * 0.05) ;
-    costopro = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(costopro);
+  //  costopro = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(costopro);
     table.rows[i].cells[2].innerHTML = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(suma);
     table.rows[i+2].cells[1].innerHTML = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(suma * 0.05);
     table.rows[i+3].cells[1].innerHTML = costopro;
@@ -303,13 +366,59 @@ function myFunction() {
         cell4.innerHTML ="";
     }
 
-
+    var i = ingredientes.rows.length - 9;
+    calcRentabilidad();
+    var precio = getCantProd("Precio",c);
+    ingredientes.rows[i+4].cells[1].innerHTML = precio;
+    ingredientes.rows[i+4].cells[1].contentEditable = "true";
+    ingredientes.rows[i+4].cells[1].style.backgroundColor ="#EEFFA1";
     
+    ingredientes.rows[i+5].cells[1].innerHTML = precio * 0.08;
+    ingredientes.rows[i+6].cells[1].innerHTML = precio - ingredientes.rows[i+5].cells[1].innerHTML -  ingredientes.rows[i+3].cells[1].innerHTML  ;
+    ingredientes.rows[i+7].cells[1].innerHTML = (ingredientes.rows[i+3].cells[1].innerHTML/precio) * 100 + "%";
+    ingredientes.rows[i+8].cells[1].innerHTML = (ingredientes.rows[i+6].cells[1].innerHTML/precio) * 100 + "%";
     /*   var row = table.insertRow(0);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         cell1.innerHTML = "Hola";
         cell2.innerHTML = "NEW CELL2";*/
+}
+function reCalcular(){
+    var ingredientes = document.getElementById("Ingredientes");
+    calcRentabilidad();
+    var i = ingredientes.rows.length - 9;
+    var precio = ingredientes.rows[i+4].cells[1].innerHTML;
+    ingredientes.rows[i+4].cells[1].contentEditable = "true";
+    ingredientes.rows[i+4].cells[1].style.backgroundColor ="#EEFFA1";
+    ingredientes.rows[i+5].cells[1].innerHTML = precio * 0.08;
+    ingredientes.rows[i+6].cells[1].innerHTML = precio - ingredientes.rows[i+5].cells[1].innerHTML -  ingredientes.rows[i+3].cells[1].innerHTML  ;
+    ingredientes.rows[i+7].cells[1].innerHTML = (ingredientes.rows[i+3].cells[1].innerHTML/precio) * 100 + "%";
+    ingredientes.rows[i+8].cells[1].innerHTML = (ingredientes.rows[i+6].cells[1].innerHTML/precio) * 100 + "%";
+}
+function calcularRentabilidadSOF(){
+    var ingredientes = document.getElementById("SofVolume");
+    var calc;
+    var suma = 0;
+    console.log(ingredientes.rows.length);
+    var i = ingredientes.rows.length - 9;
+    suma = ingredientes.rows[2].cells[5].innerHTML;
+    var costopro = Math.round(suma) + Math.round(suma * 0.05) ;
+
+    console.log(costopro);
+  //  costopro = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(costopro);
+    ingredientes.rows[i].cells[2].innerHTML = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(suma);
+    ingredientes.rows[i+2].cells[1].innerHTML = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(suma * 0.05);
+    ingredientes.rows[i+3].cells[1].innerHTML = costopro;
+    //calcRentabilidad();
+    var i = ingredientes.rows.length - 9;
+    var precio = ingredientes.rows[i+4].cells[1].innerHTML;
+    ingredientes.rows[i+4].cells[1].contentEditable = "true";
+    ingredientes.rows[i+4].cells[1].style.backgroundColor ="#EEFFA1";
+    ingredientes.rows[i+5].cells[1].innerHTML = precio * 0.08;
+    ingredientes.rows[i+6].cells[1].innerHTML = precio - ingredientes.rows[i+5].cells[1].innerHTML -  ingredientes.rows[i+3].cells[1].innerHTML  ;
+    ingredientes.rows[i+7].cells[1].innerHTML = (ingredientes.rows[i+3].cells[1].innerHTML/precio) * 100 + "%";
+    ingredientes.rows[i+8].cells[1].innerHTML = (ingredientes.rows[i+6].cells[1].innerHTML/precio) * 100 + "%";
+
 }
 
 function getCantProd(nombreProducto,nombreReceta){
@@ -331,6 +440,7 @@ function getCantProd(nombreProducto,nombreReceta){
                     var separado = linea[i].split("-");
                     if(nombreReceta == separado[0]){
                         if(nombreProducto == "Precio"){
+                            cant = separado[2];
                             return separado[2];
                         }else{
                             var idprod = getIdProd(nombreProducto);
