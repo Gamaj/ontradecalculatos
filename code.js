@@ -35,6 +35,7 @@ function estratos() {
         var option = document.createElement("option");
         option.text = "Bar Élite";
         y.add(option);
+        option = document.createElement("option");
         option.text = "Bar Estandár";
         y.add(option);
         option = document.createElement("option");
@@ -227,14 +228,16 @@ function calcRentabilidad(){
     var suma = 0;
     for (var i = 1; i < table.rows.length - 9 ; i++) {
         calc = table.rows[i].cells;
-        cal = calc[2].innerHTML * calc[3].innerHTML;
+        console.log(calc[3].innerHTML.split("$")[1]);
+        cal = calc[2].innerHTML * calc[3].innerHTML.split("$")[1];
         table.rows[i].cells[4].innerHTML = cal;
         suma = suma + cal;
     }
     var i = table.rows.length - 9;
     var costopro = suma + (suma * 0.05) ;
-    table.rows[i].cells[2].innerHTML = suma;
-    table.rows[i+2].cells[1].innerHTML = suma * 0.05;
+    costopro = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(costopro);
+    table.rows[i].cells[2].innerHTML = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(suma);
+    table.rows[i+2].cells[1].innerHTML = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(suma * 0.05);
     table.rows[i+3].cells[1].innerHTML = costopro;
    // table.rows[i].cells[4].innerHTML = suma;
     console.log(table.rows[i].cells[1].innerHTML);
@@ -255,6 +258,7 @@ function myFunction() {
     for (var i = 1; i < table.rows.length; i++) {
         calc = table.rows[i].cells;
         cal = calc[3].innerHTML / calc[2].innerHTML;
+        cal = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(cal)
         table.rows[i].cells[4].innerHTML = cal;
     }
 
@@ -298,3 +302,7 @@ function myFunction() {
         cell1.innerHTML = "Hola";
         cell2.innerHTML = "NEW CELL2";*/
 }
+ //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_includes
+ //https://www.w3schools.com/jsref/jsref_includes.asp
+ //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_replace
+ //https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/NumberFormat
