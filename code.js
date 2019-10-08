@@ -2,138 +2,29 @@ function estratos() {
 
 
 
-    var x = document.getElementById("estrato").value;
+    var x = document.getElementById("Subsegmento").value;
 
-    var y = document.getElementById("Subsegmento");
-
-    var i;
-
-    for (i = y.options.length - 1; i >= 0; i--) {
-
-        y.remove(i);
-
-    }
+    var y = document.getElementById("estrato");
 
 
 
-
-
-    if (document.getElementById("estrato").value == '1') {
-
-        var option = document.createElement("option");
-
-        option.text = "Bar Estandár";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Discoteca Estandár";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Licobares";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Juegos típicos";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Repostería y café";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Restaurante Casual";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Restaurante Formal";
-
-        y.add(option);
-
-    }
-
-    else if (document.getElementById("estrato").value == "2") {
-
-        var option = document.createElement("option");
-
-        option.text = "Bar Élite";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Bar Estandár";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Discoteca Élite";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Discoteca Estandár";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Licobares";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Juegos típicos";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Repostería y café";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Restaurante Casual";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Restaurante Élite";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "Restaurante Formal";
-
-        y.add(option);
+    if (x == "1" || x == "3" || x == "9") {
+        if (y.options.length != 2) {
+            y.remove(1);
+        }
 
     } else {
-
-        option = document.createElement("option");
-
-        option.text = "Seleccione Subsegmento";
-
-        y.add(option);
-
+        if (y.options.length < 3) {
+            y.remove(1);
+            var option = document.createElement("option");
+            option.text = "2 y 3";
+            option.value = "1";
+            y.add(option);
+            option = document.createElement("option");
+            option.text = "4, 5 y 6";
+            option.value = "2";
+            y.add(option);
+        }
     }
 
 
@@ -144,61 +35,30 @@ function estratos() {
 
 function servicios() {
 
-    var x = document.getElementById("SourceOfVolume");
-
-    var y = document.getElementById("servicios");
-
-    var i;
-
-    for (i = y.options.length - 1; i >= 0; i--) {
-
+    var x = document.getElementById("SourceOfVolume").value;
+    var y = document.getElementById("Marca");
+    var estr = document.getElementById("estrato").value;
+    for (var i = 1; i < y.options.length; i++) {
         y.remove(i);
+    }
+
+    var allText = informacionMarcas();
+
+    var linea = allText.split("|");
+
+    for (var i = 0; i < linea.length; i++) {
+
+        var separado = linea[i].split(";");
+        if (x == separado[1] && (estr == separado[2] || separado[3] == "3")) {
+
+            var option = document.createElement("option");
+            option.text = marca;
+            y.add(option);
+
+        }
 
     }
 
-    if (x.value == '1') {
-
-        var option = document.createElement("option");
-
-        option.text = "JOHNNIE RED & LEMON";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "GORDONS TONIC";
-
-        y.add(option);
-
-    } else if (x.value == '2') {
-
-        var option = document.createElement("option");
-
-        option.text = "BOTLL SMIRNOFF X1";
-
-        y.add(option);
-
-        option = document.createElement("option");
-
-        option.text = "BOTLL B&W";
-
-        y.add(option);
-
-
-
-    } else if (x.value == '3') {
-
-
-
-    } else {
-
-        var option = document.createElement("option");
-
-        option.text = "Seleccione Servicio";
-
-        y.add(option);
-
-    }
 
 }
 
@@ -208,13 +68,13 @@ function CargaProductos() {
 
     var rawFile = new XMLHttpRequest();
 
-   /* var url_string = window.location.href;
-
-   // var url = new URL(url_string).searchParams.get('servicio');}
-
-    var searchParams = new URL(url_string);
-
-    var c = url.searchParams;*/
+    /* var url_string = window.location.href;
+ 
+    // var url = new URL(url_string).searchParams.get('servicio');}
+ 
+     var searchParams = new URL(url_string);
+ 
+     var c = url.searchParams;*/
 
     var url_string = window.location.href
 
@@ -224,13 +84,13 @@ function CargaProductos() {
 
     var alternativa = "JOHNNIE RED & LEMON";
 
-   // var c= alternativa;
+    // var c= alternativa;
 
-    if (c == "JOHNNIE RED "){
+    if (c == "JOHNNIE RED ") {
 
-        c=alternativa;
+        c = alternativa;
 
-    }else if (c == "BOTLL B"){
+    } else if (c == "BOTLL B") {
         c = "BOTLL B&W"
     }
 
@@ -242,29 +102,23 @@ function CargaProductos() {
 
     rawFile.open("GET", "receta.txt", false);
 
-    rawFile.onreadystatechange = function ()
+    rawFile.onreadystatechange = function () {
 
-    {
+        if (rawFile.readyState === 4) {
 
-        if(rawFile.readyState === 4)
-
-        {
-
-            if(rawFile.status === 200 || rawFile.status == 0)
-
-            {
+            if (rawFile.status === 200 || rawFile.status == 0) {
 
                 var allText = rawFile.responseText;
 
                 var linea = allText.split("\n");
 
-                for (var i = 0; i<linea.length ; i++){
+                for (var i = 0; i < linea.length; i++) {
 
 
 
                     var separado = linea[i].split(";");
 
-                    if(c == separado[0]){
+                    if (c == separado[0]) {
 
                         addReceta(separado[2]);
 
@@ -272,25 +126,25 @@ function CargaProductos() {
 
                     }
 
-                    
+
 
                 }
 
-                
+
 
             }
 
         }
 
     }
-    
+
 
     rawFile.send(null);
     myFunction();
 
 }
 
-function addSourceOfVolume(){
+function addSourceOfVolume() {
 
     var rawFile = new XMLHttpRequest();
 
@@ -300,33 +154,27 @@ function addSourceOfVolume(){
 
     var c = url.searchParams.get("source");
 
-   //var c = '1';
+    //var c = '1';
 
     rawFile.open("GET", "sourceOfVolume.txt", false);
 
-    rawFile.onreadystatechange = function ()
+    rawFile.onreadystatechange = function () {
 
-    {
+        if (rawFile.readyState === 4) {
 
-        if(rawFile.readyState === 4)
-
-        {
-
-            if(rawFile.status === 200 || rawFile.status == 0)
-
-            {
+            if (rawFile.status === 200 || rawFile.status == 0) {
 
                 var allText = rawFile.responseText;
 
                 var linea = allText.split("\n");
 
-                for (var i = 0; i<linea.length ; i++){
+                for (var i = 0; i < linea.length; i++) {
 
 
 
                     var separado = linea[i].split(";");
 
-                    if(c == separado[0]){
+                    if (c == separado[0]) {
 
                         var table = document.getElementById("SofVolume");
 
@@ -352,7 +200,7 @@ function addSourceOfVolume(){
 
                         cell2.contentEditable = "true";
 
-                        cell2.style.backgroundColor ="#EEFFA1";
+                        cell2.style.backgroundColor = "#EEFFA1";
 
                         cell3.innerHTML = separado[3];
 
@@ -360,27 +208,27 @@ function addSourceOfVolume(){
 
                         cell4.contentEditable = "true";
 
-                        cell4.style.backgroundColor ="#EEFFA1";
+                        cell4.style.backgroundColor = "#EEFFA1";
 
-                        cell5.innerHTML = separado[2]/separado[4];
+                        cell5.innerHTML = separado[2] / separado[4];
 
                         cell6.innerHTML = separado[2];
 
-                       
 
-                    document.getElementById("SofVolume").rows[10].cells[1].innerHTML = separado[6];
 
-                    document.getElementById("observaciones").innerHTML = separado[7];
+                        document.getElementById("SofVolume").rows[10].cells[1].innerHTML = separado[6];
 
-                        
+                        document.getElementById("observaciones").innerHTML = separado[7];
 
-                        
 
-                    } 
+
+
+
+                    }
 
                 }
 
-                
+
 
             }
 
@@ -398,7 +246,7 @@ function addSourceOfVolume(){
 
 
 
-function addReceta(preparacion){
+function addReceta(preparacion) {
 
     var table = document.getElementById("Ingredientes");
 
@@ -410,39 +258,33 @@ function addReceta(preparacion){
 
 }
 
-function searchProducts(x){
+function searchProducts(x) {
 
     var rawFile = new XMLHttpRequest();
 
     rawFile.open("GET", "Prodcuto.csv", false);
 
-    rawFile.onreadystatechange = function ()
+    rawFile.onreadystatechange = function () {
 
-    {
+        if (rawFile.readyState === 4) {
 
-        if(rawFile.readyState === 4)
-
-        {
-
-            if(rawFile.status === 200 || rawFile.status == 0)
-
-            {
+            if (rawFile.status === 200 || rawFile.status == 0) {
 
                 var allText = rawFile.responseText;
 
                 var linea = allText.split("\n");
 
-                for (var i = 0; i<linea.length ; i++){
+                for (var i = 0; i < linea.length; i++) {
 
 
 
                     var separado = linea[i].split(",");
 
-                    for(var j = 0; j<x.length; j++){
+                    for (var j = 0; j < x.length; j++) {
 
 
 
-                        if(x[j] == separado[0]){
+                        if (x[j] == separado[0]) {
 
                             //console.log();
 
@@ -452,11 +294,11 @@ function searchProducts(x){
 
 
 
-                    }              
+                    }
 
                 }
 
-                
+
 
             }
 
@@ -472,13 +314,13 @@ function searchProducts(x){
 
 }
 
-function addRowProd(elementos){
+function addRowProd(elementos) {
 
     var table = document.getElementById("Prod");
 
     var i = table.rows.length;
 
-    var producto =  elementos[1];
+    var producto = elementos[1];
 
     var unMedida = elementos[2];
 
@@ -506,7 +348,7 @@ function addRowProd(elementos){
 
     cell4.contentEditable = "true";
 
-    cell4.style.backgroundColor ="#EEFFA1";
+    cell4.style.backgroundColor = "#EEFFA1";
 
     cell4.innerHTML = precioVenta;
 
@@ -540,25 +382,17 @@ function readTextFile() {
 
 
 
-function readTextFile()
-
-{
+function readTextFile() {
 
     var rawFile = new XMLHttpRequest();
 
     rawFile.open("GET", "testing.txt", false);
 
-    rawFile.onreadystatechange = function ()
+    rawFile.onreadystatechange = function () {
 
-    {
+        if (rawFile.readyState === 4) {
 
-        if(rawFile.readyState === 4)
-
-        {
-
-            if(rawFile.status === 200 || rawFile.status == 0)
-
-            {
+            if (rawFile.status === 200 || rawFile.status == 0) {
 
                 var allText = rawFile.responseText;
 
@@ -576,7 +410,7 @@ function readTextFile()
 
 
 
-function calcRentabilidad(){
+function calcRentabilidad() {
 
     var table = document.getElementById("Ingredientes");
 
@@ -584,7 +418,7 @@ function calcRentabilidad(){
 
     var suma = 0;
 
-    for (var i = 1; i < table.rows.length - 9 ; i++) {
+    for (var i = 1; i < table.rows.length - 9; i++) {
 
         calc = table.rows[i].cells;
 
@@ -600,17 +434,17 @@ function calcRentabilidad(){
 
     var i = table.rows.length - 9;
 
-    var costopro = suma + (suma * 0.05) ;
+    var costopro = suma + (suma * 0.05);
 
-  //  costopro = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(costopro);
+    //  costopro = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(costopro);
 
     table.rows[i].cells[2].innerHTML = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(suma);
 
-    table.rows[i+2].cells[1].innerHTML = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(suma * 0.05);
+    table.rows[i + 2].cells[1].innerHTML = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(suma * 0.05);
 
-    table.rows[i+3].cells[1].innerHTML = costopro;
+    table.rows[i + 3].cells[1].innerHTML = costopro;
 
-   // table.rows[i].cells[4].innerHTML = suma;
+    // table.rows[i].cells[4].innerHTML = suma;
 
     console.log(table.rows[i].cells[1].innerHTML);
 
@@ -646,11 +480,11 @@ function myFunction() {
 
     var alternativa = "JOHNNIE RED & LEMON";
 
-   // var c= alternativa;
+    // var c= alternativa;
 
-    if (c == "JOHNNIE RED "){
+    if (c == "JOHNNIE RED ") {
 
-        c=alternativa;
+        c = alternativa;
 
     }
 
@@ -680,7 +514,7 @@ function myFunction() {
 
     for (i = ingredientes.rows.length - 10; i >= 0; i--) {
 
-        if ( i != 0){         
+        if (i != 0) {
 
             ingredientes.deleteRow(i);
 
@@ -726,13 +560,13 @@ function myFunction() {
 
         cell2.contentEditable = "true";
 
-        cell2.style.backgroundColor ="#EEFFA1";
+        cell2.style.backgroundColor = "#EEFFA1";
 
-        cell2.innerHTML =getCantProd(nombre,c);
+        cell2.innerHTML = getCantProd(nombre, c);
 
         cell3.innerHTML = vlrUn;
 
-        cell4.innerHTML ="";
+        cell4.innerHTML = "";
 
     }
 
@@ -742,23 +576,23 @@ function myFunction() {
 
     calcRentabilidad();
 
-    var precio = getCantProd("Precio",c);
+    var precio = getCantProd("Precio", c);
 
-    ingredientes.rows[i+4].cells[1].innerHTML = precio;
+    ingredientes.rows[i + 4].cells[1].innerHTML = precio;
 
-    ingredientes.rows[i+4].cells[1].contentEditable = "true";
+    ingredientes.rows[i + 4].cells[1].contentEditable = "true";
 
-    ingredientes.rows[i+4].cells[1].style.backgroundColor ="#EEFFA1";
+    ingredientes.rows[i + 4].cells[1].style.backgroundColor = "#EEFFA1";
 
-    
 
-    ingredientes.rows[i+5].cells[1].innerHTML = precio * 0.08;
 
-    ingredientes.rows[i+6].cells[1].innerHTML = precio - ingredientes.rows[i+5].cells[1].innerHTML -  ingredientes.rows[i+3].cells[1].innerHTML  ;
+    ingredientes.rows[i + 5].cells[1].innerHTML = precio * 0.08;
 
-    ingredientes.rows[i+7].cells[1].innerHTML = Math.round((ingredientes.rows[i+3].cells[1].innerHTML/precio) * 100) + "%";
+    ingredientes.rows[i + 6].cells[1].innerHTML = precio - ingredientes.rows[i + 5].cells[1].innerHTML - ingredientes.rows[i + 3].cells[1].innerHTML;
 
-    ingredientes.rows[i+8].cells[1].innerHTML = Math.round((ingredientes.rows[i+6].cells[1].innerHTML/precio) * 100) + "%";
+    ingredientes.rows[i + 7].cells[1].innerHTML = Math.round((ingredientes.rows[i + 3].cells[1].innerHTML / precio) * 100) + "%";
+
+    ingredientes.rows[i + 8].cells[1].innerHTML = Math.round((ingredientes.rows[i + 6].cells[1].innerHTML / precio) * 100) + "%";
 
     /*   var row = table.insertRow(0);
 
@@ -772,7 +606,7 @@ function myFunction() {
 
 }
 
-function reCalcular(){
+function reCalcular() {
 
     var ingredientes = document.getElementById("Ingredientes");
 
@@ -780,23 +614,23 @@ function reCalcular(){
 
     var i = ingredientes.rows.length - 9;
 
-    var precio = ingredientes.rows[i+4].cells[1].innerHTML;
+    var precio = ingredientes.rows[i + 4].cells[1].innerHTML;
 
-    ingredientes.rows[i+4].cells[1].contentEditable = "true";
+    ingredientes.rows[i + 4].cells[1].contentEditable = "true";
 
-    ingredientes.rows[i+4].cells[1].style.backgroundColor ="#EEFFA1";
+    ingredientes.rows[i + 4].cells[1].style.backgroundColor = "#EEFFA1";
 
-    ingredientes.rows[i+5].cells[1].innerHTML = precio * 0.08;
+    ingredientes.rows[i + 5].cells[1].innerHTML = precio * 0.08;
 
-    ingredientes.rows[i+6].cells[1].innerHTML = precio - ingredientes.rows[i+5].cells[1].innerHTML -  ingredientes.rows[i+3].cells[1].innerHTML  ;
+    ingredientes.rows[i + 6].cells[1].innerHTML = precio - ingredientes.rows[i + 5].cells[1].innerHTML - ingredientes.rows[i + 3].cells[1].innerHTML;
 
-    ingredientes.rows[i+7].cells[1].innerHTML = Math.round((ingredientes.rows[i+3].cells[1].innerHTML/precio) * 100) + "%";
+    ingredientes.rows[i + 7].cells[1].innerHTML = Math.round((ingredientes.rows[i + 3].cells[1].innerHTML / precio) * 100) + "%";
 
-    ingredientes.rows[i+8].cells[1].innerHTML = Math.round((ingredientes.rows[i+6].cells[1].innerHTML/precio) * 100) + "%";
+    ingredientes.rows[i + 8].cells[1].innerHTML = Math.round((ingredientes.rows[i + 6].cells[1].innerHTML / precio) * 100) + "%";
 
 }
 
-function calcularRentabilidadSOF(){
+function calcularRentabilidadSOF() {
 
     var ingredientes = document.getElementById("SofVolume");
 
@@ -810,41 +644,41 @@ function calcularRentabilidadSOF(){
 
     var unidadA = ingredientes.rows[2].cells[1].innerHTML;
     var cantidad = ingredientes.rows[2].cells[3].innerHTM;
-    ingredientes.rows[2].cells[4].innerHTM = unidadA/cantidad;
-    
+    ingredientes.rows[2].cells[4].innerHTM = unidadA / cantidad;
+
     suma = ingredientes.rows[2].cells[4].innerHTML * ingredientes.rows[2].cells[3].innerHTML;
     ingredientes.rows[2].cells[5].innerHTML = suma;
-    var costopro = Math.round(suma) + Math.round(suma * 0.05) ;
+    var costopro = Math.round(suma) + Math.round(suma * 0.05);
 
 
 
     console.log(costopro);
 
-  //  costopro = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(costopro);
+    //  costopro = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(costopro);
 
     ingredientes.rows[i].cells[2].innerHTML = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(suma);
 
-    ingredientes.rows[i+2].cells[1].innerHTML = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(suma * 0.05);
+    ingredientes.rows[i + 2].cells[1].innerHTML = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(suma * 0.05);
 
-    ingredientes.rows[i+3].cells[1].innerHTML = costopro;
+    ingredientes.rows[i + 3].cells[1].innerHTML = costopro;
 
     //calcRentabilidad();
 
     var i = ingredientes.rows.length - 9;
 
-    var precio = ingredientes.rows[i+4].cells[1].innerHTML;
+    var precio = ingredientes.rows[i + 4].cells[1].innerHTML;
 
-    ingredientes.rows[i+4].cells[1].contentEditable = "true";
+    ingredientes.rows[i + 4].cells[1].contentEditable = "true";
 
-    ingredientes.rows[i+4].cells[1].style.backgroundColor ="#EEFFA1";
+    ingredientes.rows[i + 4].cells[1].style.backgroundColor = "#EEFFA1";
 
-    ingredientes.rows[i+5].cells[1].innerHTML = precio * 0.08;
+    ingredientes.rows[i + 5].cells[1].innerHTML = precio * 0.08;
 
-    ingredientes.rows[i+6].cells[1].innerHTML = precio - ingredientes.rows[i+5].cells[1].innerHTML -  ingredientes.rows[i+3].cells[1].innerHTML  ;
+    ingredientes.rows[i + 6].cells[1].innerHTML = precio - ingredientes.rows[i + 5].cells[1].innerHTML - ingredientes.rows[i + 3].cells[1].innerHTML;
 
-    ingredientes.rows[i+7].cells[1].innerHTML = Math.round((ingredientes.rows[i+3].cells[1].innerHTML/precio) * 100) + "%";
+    ingredientes.rows[i + 7].cells[1].innerHTML = Math.round((ingredientes.rows[i + 3].cells[1].innerHTML / precio) * 100) + "%";
 
-    ingredientes.rows[i+8].cells[1].innerHTML = Math.round((ingredientes.rows[i+6].cells[1].innerHTML/precio) * 100) + "%";
+    ingredientes.rows[i + 8].cells[1].innerHTML = Math.round((ingredientes.rows[i + 6].cells[1].innerHTML / precio) * 100) + "%";
 
 
 
@@ -852,27 +686,21 @@ function calcularRentabilidadSOF(){
 
 
 
-function getCantProd(nombreProducto,nombreReceta){
+function getCantProd(nombreProducto, nombreReceta) {
 
     var rawFile = new XMLHttpRequest();
 
     var cant;
 
-    
+
 
     rawFile.open("GET", "Cantidades.txt", false);
 
-    rawFile.onreadystatechange = function ()
+    rawFile.onreadystatechange = function () {
 
-    {
+        if (rawFile.readyState === 4) {
 
-        if(rawFile.readyState === 4)
-
-        {
-
-            if(rawFile.status === 200 || rawFile.status == 0)
-
-            {
+            if (rawFile.status === 200 || rawFile.status == 0) {
 
                 var allText = rawFile.responseText;
 
@@ -880,39 +708,39 @@ function getCantProd(nombreProducto,nombreReceta){
 
 
 
-                for (var i = 0; i<linea.length ; i++){
+                for (var i = 0; i < linea.length; i++) {
 
 
 
                     var separado = linea[i].split("-");
 
-                    if(nombreReceta == separado[0]){
+                    if (nombreReceta == separado[0]) {
 
-                        if(nombreProducto == "Precio"){
+                        if (nombreProducto == "Precio") {
 
                             cant = separado[2];
 
                             return separado[2];
 
-                        }else{
+                        } else {
 
                             var idprod = getIdProd(nombreProducto);
 
-                     //       console.log(idprod);
+                            //       console.log(idprod);
 
                             products = separado[1].split(",");
 
-                            for (var j = 0 ; j<products.length; j++ ){
+                            for (var j = 0; j < products.length; j++) {
 
                                 var subnivel = products[j].split(";");
 
-                              //  console.log(subnivel[0]);
+                                //  console.log(subnivel[0]);
 
-                                if (subnivel[0]==idprod){
+                                if (subnivel[0] == idprod) {
 
                                     cant = subnivel[1];
 
-                                  //  console.log(subnivel[0] + " . " + subnivel[1]);
+                                    //  console.log(subnivel[0] + " . " + subnivel[1]);
 
                                     return subnivel[1];
 
@@ -924,11 +752,11 @@ function getCantProd(nombreProducto,nombreReceta){
 
                     }
 
-                                  
+
 
                 }
 
-                
+
 
             }
 
@@ -948,7 +776,7 @@ function getCantProd(nombreProducto,nombreReceta){
 
 
 
-function getIdProd(nombre){
+function getIdProd(nombre) {
 
     var rawFile = new XMLHttpRequest();
 
@@ -956,45 +784,39 @@ function getIdProd(nombre){
 
     rawFile.open("GET", "Prodcuto.csv", false);
 
-    rawFile.onreadystatechange = function ()
+    rawFile.onreadystatechange = function () {
 
-    {
+        if (rawFile.readyState === 4) {
 
-        if(rawFile.readyState === 4)
-
-        {
-
-            if(rawFile.status === 200 || rawFile.status == 0)
-
-            {
+            if (rawFile.status === 200 || rawFile.status == 0) {
 
                 var allText = rawFile.responseText;
 
                 var linea = allText.split("\n");
 
-                for (var i = 0; i<linea.length ; i++){
+                for (var i = 0; i < linea.length; i++) {
 
 
 
                     var separado = linea[i].split(",");
 
-                    if(nombre == separado[1]){
+                    if (nombre == separado[1]) {
 
-                      //  console.log("getId " + separado[0] );
+                        //  console.log("getId " + separado[0] );
 
-                        global1=separado[0];
+                        global1 = separado[0];
 
                         return separado[0];
 
-                            
+
 
                     }
 
-           
+
 
                 }
 
-                
+
 
             }
 
@@ -1008,10 +830,15 @@ function getIdProd(nombre){
 
 }
 
- //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_includes
+//https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_includes
 
- //https://www.w3schools.com/jsref/jsref_includes.asp
+//https://www.w3schools.com/jsref/jsref_includes.asp
 
- //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_replace
+//https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_replace
 
- //https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/NumberFormat
+//https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/NumberFormat
+
+function informacionMarcas() {
+    var todo = "JOHNNIE WALKER;Cerveza;3|GORDONS; Cerveza; 3|SMIRNOFF; Destilado Nacional; 3|BLACK & WHITE; Destilado Nacional; 1";
+    return todo;
+}
