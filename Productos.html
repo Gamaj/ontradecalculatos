@@ -1,205 +1,417 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
+
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Caluladora</title>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+
         crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+
         crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+
         crossorigin="anonymous"></script>
+
     <script type="text/javascript" src="code.js"></script>
+
 </head>
 
+
+
 <body onLoad="CargaProductos()">
+
     <div class="container">
+
         <div class="row">
+
             <div class="col">
 
+
+
             </div>
+
             <div class="col-md-auto">
+
                 <br>
+
                 <h5>Llene los campos que se encuentran en color amarillo.</h5>
+
                 <br>
+
                 <table id="Prod" class="table table-bordered">
+
                     <thead class="thead-dark">
+
                         <tr>
+
                             <th scope="col">PRODUCTO</th>
+
                             <th scope="col">UN.MEDIDA</th>
+
                             <th scope="col">CANTIDAD</th>
+
                             <th scope="col">PRECIOVENTA</th>
+
                             <th scope="col">VALORxUNIDAD</th>
+
                         </tr>
+
                     <tbody>
+
+
 
                     </tbody>
 
+
+
                     </thead>
+
                 </table>
+
                 <div class="text-center">
-                    <button type="button" onclick="myFunction()" class="btn btn-danger center-block">Try it</button>
+
+                    <button type="button" onclick="myFunction()" class="btn btn-danger center-block">Calcular</button>
+
                 </div><br>
+
+
 
                 <table id="Ingredientes" class="table table-bordered">
+
                     <thead class="thead-dark">
+
                         <tr>
+
                             <th scope="col">INGREDIENTE</th>
+
                             <th scope="col">UN.MEDIDA</th>
+
                             <th scope="col">CANTIDAD</th>
+
                             <th scope="col">VALORxUNIDAD</th>
+
                             <th scope="col">TOTAL</th>
+
                         </tr>
+
                     <tbody>
+
                        
+
                         <tr>
+
                             <td id="prep" colspan="2" style="font-weight:bold">PREPRACIÓN</td>
+
                             <td colspan="2" style="font-weight:bold">TOTAL COSTO INSUMOS</td>
+
                             <td></td>
+
                         </tr>
+
                         <tr value="7">
+
                             <td colspan="2" rowspan="8" style="width: auto;">
+
                             </td>
+
                         </tr>
+
                         <tr>
+
                             <td colspan="2" style="font-weight:bold">5% OTROS GASTOS</td>
+
                             <td></td>
 
+
+
                         </tr>
+
                         <tr>
+
                             <td colspan="2" style="font-weight:bold">TOTAL COSTO PRODUCTO</td>
+
                             <td></td>
 
+
+
                         </tr>
+
                         <tr>
+
+
 
                             <td colspan="2" style="font-weight:bold" bgcolor="#FF0000">
+
                                 <font color="#FFFFFF">PRECIO S. VENTA</font>
+
                             </td>
+
                             <td></td>
 
+
+
                         </tr>
+
                         <tr>
+
                             <td colspan="2" style="font-weight:bold">IMPUESTO AL CONSUMO 8%</td>
+
                             <td></td>
 
+
+
                         </tr>
+
                         <tr>
+
                             <td colspan="2" style="font-weight:bold">RENTAB. DESPUES DE IMPUESTOS</td>
+
                             <td></td>
 
+
+
                         </tr>
+
                         <tr>
+
                             <td colspan="2" style="font-weight:bold">%COSTO PRODUCTO</td>
+
+                            <td></td>
+
+
+
+                        </tr>
+
+                        <tr>
+
+                            <td colspan="2" style="font-weight:bold">%RENTABILIDAD</td>
+
                             <td></td>
 
                         </tr>
-                        <tr>
-                            <td colspan="2" style="font-weight:bold">%RENTABILIDAD</td>
-                            <td></td>
-                        </tr>
+
+
 
                     </tbody>
+
                     </tr>
+
                     </thead>
+
                 </table>
+
+
 
                 <div class="text-center">
+
                     <button type="button" onclick="reCalcular()" class="btn btn-danger center-block">Calcular</button>
+
                 </div><br>
 
+
+
                 <table id="SofVolume" class="table table-bordered">
+
                     <thead class="thead-dark">
+
                         <tr>
+
                             <th scope="col" colspan="6">RENTABILIDAD CERVERZA</th>
+
                         </tr>
+
                         <tr>
+
                             <th scope="col">INGREDIENTE</th>
+
                             <th scope="col">COSTOxUNIDAD</th>
+
                             <th scope="col">UN.MEDIDA</th>
+
                             <th scope="col">CANTIDAD</th>
+
                             <th scope="col">VALORxUNIDAD</th>
+
                             <th scope="col">TOTAL</th>
+
                         </tr>
+
                     <tbody>
+
                         <tr>
+
                           
+
                         </tr>
+
                         <tr>
+
                         
+
                         </tr>
+
                         <tr>
+
                     
+
                         </tr>
+
                         <tr>
+
                             <td id="prep" colspan="3" style="font-weight:bold">OBSERVACIONES</td>
+
                             <td colspan="2" style="font-weight:bold">TOTAL COSTO INSUMOS</td>
+
                             <td></td>
+
                         </tr>
+
                         <tr value="7">
+
                             <td colspan="3" rowspan="8" id="observaciones">
+
                             </td>
+
                         </tr>
+
                         <tr>
+
                             <td colspan="2" style="font-weight:bold">5% OTROS GASTOS</td>
+
                             <td></td>
 
+
+
                         </tr>
+
                         <tr>
+
                             <td colspan="2" style="font-weight:bold">TOTAL COSTO PRODUCTO</td>
+
                             <td></td>
 
+
+
                         </tr>
+
                         <tr>
+
+
 
                             <td colspan="2" style="font-weight:bold" bgcolor="#FF0000">
+
                                 <font color="#FFFFFF">PRECIO S. VENTA</font>
+
                             </td>
+
                             <td></td>
 
+
+
                         </tr>
+
                         <tr>
+
                             <td colspan="2" style="font-weight:bold">IMPUESTO AL CONSUMO 8%</td>
+
                             <td></td>
 
+
+
                         </tr>
+
                         <tr>
+
                             <td colspan="2" style="font-weight:bold">RENTAB. DESPUES DE IMPUESTOS</td>
+
                             <td></td>
 
+
+
                         </tr>
+
                         <tr>
+
                             <td colspan="2" style="font-weight:bold">%COSTO PRODUCTO</td>
+
+                            <td></td>
+
+
+
+                        </tr>
+
+                        <tr>
+
+                            <td colspan="2" style="font-weight:bold">%RENTABILIDAD</td>
+
                             <td></td>
 
                         </tr>
-                        <tr>
-                            <td colspan="2" style="font-weight:bold">%RENTABILIDAD</td>
-                            <td></td>
-                        </tr>
+
+
 
                     </tbody>
+
                     </tr>
+
                     </thead>
+
                 </table>
 
+                 <div class="text-center">
+
+                    <button type="button" onclick="calcularRentabilidadSOF()" class="btn btn-danger center-block">Calcular</button>
+
+                </div><br>
+
+
 
             </div>
+
             <div class="col">
 
+
+
             </div>
 
+
+
         </div>
+
+
 
     </div>
 
 
+
+
+
 </body>
+</html>
+
+
+
