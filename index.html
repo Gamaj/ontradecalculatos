@@ -12,7 +12,7 @@
 
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        <title>Caluladora</title>
+        <title>Simulador</title>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -144,11 +144,11 @@
                                 <form>
                                         <div class="form-row">
                                                 <div class="col">
-                                                        <input type="text" class="form-control"
-                                                                placeholder="Costo">
+                                                        <input  type="text" class="form-control"
+                                                                placeholder="Costo" id="costo" minlength="3" maxlength="10" required pattern="[0-9]+">
                                                 </div>
                                                 <div class="col">
-                                                        <input type="text" class="form-control" placeholder="Precio de Venta">
+                                                        <input id = "precio" type="text" class="form-control" placeholder="Precio de Venta" minlength="3" maxlength="10" required pattern="[0-9]+">
                                                 </div>
                                         </div>
                                 </form><br>
@@ -163,7 +163,7 @@
         
                                                 </div>
         
-                                                <select id="Marca" class="custom-select">
+                                                <select id="Marca" onchange="cargaServicios()" class="custom-select">
         
                                                         <option selected>Seleccione Marca</option>
         
@@ -193,7 +193,7 @@
 
 
 
-                                        <button onclick="window.location.href='Productos.html?servicio=' + document.getElementById('servicios').value + '&source=' +document.getElementById('SourceOfVolume').value"
+                                        <button onclick="window.location.href='Productos.html?servicio=' + document.getElementById('servicios').value + '&source=' +document.getElementById('SourceOfVolume').value + '&costo='+ document.getElementById('costo').value + '&precio=' + document.getElementById('precio').value"
                                                 type="button" class="btn btn-danger center-block">Calcular</button>
 
                                 </div><br>

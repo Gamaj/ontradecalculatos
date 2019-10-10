@@ -38,21 +38,37 @@ function servicios() {
     var x = document.getElementById("SourceOfVolume").value;
     var y = document.getElementById("Marca");
     var estr = document.getElementById("estrato").value;
-    for (var i = 1; i < y.options.length; i++) {
-        y.remove(i);
+    var serv = document.getElementById("servicios");
+    //console.log("Fuera: "+y.options.length);
+    var i;
+    for (i = serv.options.length - 1; i >= 0; i--) {
+
+        serv.remove(i);
+
     }
+    var option = document.createElement("option");
+    option.text = "Seleccione Servicio";
+    option.selected = "true";
+    serv.add(option);
+    for (i = y.options.length - 1; i >= 0; i--) {
 
+        y.remove(i);
+
+    }
+    var option = document.createElement("option");
+    option.text = "Seleccione Marca";
+    option.selected = "true";
+    y.add(option);
     var allText = informacionMarcas();
-
     var linea = allText.split("|");
 
     for (var i = 0; i < linea.length; i++) {
 
         var separado = linea[i].split(";");
-        if (x == separado[1] && (estr == separado[2] || separado[3] == "3")) {
+        if (x == separado[1] && (estr== separado[2] || separado[2] == "3" )) {
 
             var option = document.createElement("option");
-            option.text = marca;
+            option.text = separado[0];
             y.add(option);
 
         }
@@ -62,7 +78,37 @@ function servicios() {
 
 }
 
+function cargaServicios(){
+    var x = document.getElementById("SourceOfVolume").value;
+    var y = document.getElementById("Marca").value;
+    var estr = document.getElementById("estrato").value;
+    var serv = document.getElementById("servicios");
+    var linea = informacionServicios();
+    for (i = serv.options.length - 1; i >= 0; i--) {
 
+        serv.remove(i);
+
+    }
+    var option = document.createElement("option");
+    option.text = "Seleccione Servicio";
+    option.selected = "true";
+    serv.add(option);
+
+  //  console.log(lineas);
+  //  var linea = lineas.split("|");
+    for (var i = 0; i<linea.length;i++){
+        var variable = linea[i].split(";");
+        if (y == variable[0] && x == variable[4] && (estr== variable[5] || variable[5] == "3" )){
+            var option = document.createElement("option");
+            option.text = variable[1];  
+            serv.add(option);
+
+        }
+            
+
+    }
+
+}
 
 function CargaProductos() {
 
@@ -80,11 +126,11 @@ function CargaProductos() {
 
     var url = new URL(url_string);
 
-    var c = url.searchParams.get("servicio");
+   // var c = url.searchParams.get("servicio");
 
     var alternativa = "JOHNNIE RED & LEMON";
 
-    // var c= alternativa;
+    var c= alternativa;
 
     if (c == "JOHNNIE RED ") {
 
@@ -118,11 +164,13 @@ function CargaProductos() {
 
                     var separado = linea[i].split(";");
 
-                    if (c == separado[0]) {
+                    if (c == separado[1]) {
 
-                        addReceta(separado[2]);
+                        addReceta(separado[3]);
 
-                        searchProducts(separado[1]);
+                        searchProducts(separado[2]);
+
+                        addImages(separado[6]);
 
                     }
 
@@ -146,15 +194,29 @@ function CargaProductos() {
 
 function addSourceOfVolume() {
 
+    var url_string = window.location.href
+
+    var url = new URL(url_string);
+
+   // var c = url.searchParams.get("servicio");
+    var costosource = "10000";
+    var preciosource = "20000";  
     var rawFile = new XMLHttpRequest();
 
     var url_string = window.location.href
 
     var url = new URL(url_string);
 
-    var c = url.searchParams.get("source");
+    //var c = url.searchParams.get("source");
 
-    //var c = '1';
+    var c = "Cerveza";
+    if (c == "Cerveza"){
+        c = "1";
+    }else if (c=="Destilado Nacional"){
+        c = "2";
+    }else if (c=="Destilaado Importado"){
+        c = "3";
+    }
 
     rawFile.open("GET", "sourceOfVolume.txt", false);
 
@@ -196,7 +258,7 @@ function addSourceOfVolume() {
 
                         cell1.innerHTML = separado[1];
 
-                        cell2.innerHTML = separado[2];
+                        cell2.innerHTML = costosource;
 
                         cell2.contentEditable = "true";
 
@@ -210,18 +272,15 @@ function addSourceOfVolume() {
 
                         cell4.style.backgroundColor = "#EEFFA1";
 
-                        cell5.innerHTML = separado[2] / separado[4];
+                        cell5.innerHTML = Math.round(costosource / separado[4]);
 
-                        cell6.innerHTML = separado[2];
+                        cell6.innerHTML = costosource;
 
 
 
-                        document.getElementById("SofVolume").rows[10].cells[1].innerHTML = separado[6];
+                        document.getElementById("SofVolume").rows[10].cells[1].innerHTML = preciosource;
 
                         document.getElementById("observaciones").innerHTML = separado[7];
-
-
-
 
 
                     }
@@ -251,10 +310,6 @@ function addReceta(preparacion) {
     var table = document.getElementById("Ingredientes");
 
     table.rows[2].cells[0].innerHTML = preparacion;
-
-
-
-
 
 }
 
@@ -461,7 +516,7 @@ function calcRentabilidad() {
 function myFunction() {
 
     var table = document.getElementById("Prod");
-
+    console.log(table);
     var calc = table.rows[1].cells;
 
     var cal = Math.round(calc[3].innerHTML / calc[2].innerHTML);
@@ -476,11 +531,11 @@ function myFunction() {
 
     var url = new URL(url_string);
 
-    var c = url.searchParams.get("servicio");
+   // var c = url.searchParams.get("servicio");
 
     var alternativa = "JOHNNIE RED & LEMON";
 
-    // var c= alternativa;
+    var c = alternativa;
 
     if (c == "JOHNNIE RED ") {
 
@@ -590,9 +645,19 @@ function myFunction() {
 
     ingredientes.rows[i + 6].cells[1].innerHTML = precio - ingredientes.rows[i + 5].cells[1].innerHTML - ingredientes.rows[i + 3].cells[1].innerHTML;
 
+    var tableComparacion = document.getElementById("Comparacion");
+    tableComparacion.rows[0].cells[0].innerHTML = "RENTABILIDAD " + c +  tableComparacion.rows[0].cells[0].innerHTML;
+    tableComparacion.rows[1].cells[0].innerHTML = c;
+    tableComparacion.rows[2].cells[0].innerHTML = ingredientes.rows[i + 6].cells[1].innerHTML;
+
     ingredientes.rows[i + 7].cells[1].innerHTML = Math.round((ingredientes.rows[i + 3].cells[1].innerHTML / precio) * 100) + "%";
 
     ingredientes.rows[i + 8].cells[1].innerHTML = Math.round((ingredientes.rows[i + 6].cells[1].innerHTML / precio) * 100) + "%";
+
+ /*   var tableComparacion = document.getElementById("Comparacion");
+    var tableGanancia = document.getElementById("Ganancia");
+    tableGanancia.rows[1].cells[0].innerHTML = Math.round(tableComparacion.rows[1].cells[0].innerHTML/tableComparacion.rows[1].cells[1].innerHTML);
+
 
     /*   var row = table.insertRow(0);
 
@@ -627,6 +692,7 @@ function reCalcular() {
     ingredientes.rows[i + 7].cells[1].innerHTML = Math.round((ingredientes.rows[i + 3].cells[1].innerHTML / precio) * 100) + "%";
 
     ingredientes.rows[i + 8].cells[1].innerHTML = Math.round((ingredientes.rows[i + 6].cells[1].innerHTML / precio) * 100) + "%";
+   
 
 }
 
@@ -638,7 +704,7 @@ function calcularRentabilidadSOF() {
 
     var suma = 0;
 
-    console.log(ingredientes.rows.length);
+   // console.log(ingredientes.rows.length);
 
     var i = ingredientes.rows.length - 9;
 
@@ -650,9 +716,6 @@ function calcularRentabilidadSOF() {
     ingredientes.rows[2].cells[5].innerHTML = suma;
     var costopro = Math.round(suma) + Math.round(suma * 0.05);
 
-
-
-    console.log(costopro);
 
     //  costopro = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(costopro);
 
@@ -676,11 +739,22 @@ function calcularRentabilidadSOF() {
 
     ingredientes.rows[i + 6].cells[1].innerHTML = precio - ingredientes.rows[i + 5].cells[1].innerHTML - ingredientes.rows[i + 3].cells[1].innerHTML;
 
-    ingredientes.rows[i + 7].cells[1].innerHTML = Math.round((ingredientes.rows[i + 3].cells[1].innerHTML / precio) * 100) + "%";
+    var url_string = window.location.href
 
+    var url = new URL(url_string);
+
+   // var c = url.searchParams.get("servicio");
+    var c = "Cerveza";
+    var tableComparacion = document.getElementById("Comparacion");
+    var cambio = " vs " + c.toUpperCase();
+    tableComparacion.rows[0].cells[0].innerHTML = cambio ;
+    tableComparacion.rows[1].cells[1].innerHTML = c.toUpperCase();
+    tableComparacion.rows[2].cells[1].innerHTML = ingredientes.rows[i + 6].cells[1].innerHTML;
+    ingredientes.rows[i + 7].cells[1].innerHTML = Math.round((ingredientes.rows[i + 3].cells[1].innerHTML / precio) * 100) + "%";
     ingredientes.rows[i + 8].cells[1].innerHTML = Math.round((ingredientes.rows[i + 6].cells[1].innerHTML / precio) * 100) + "%";
 
-
+    var tableGanancia = document.getElementById("Ganancia");
+    tableGanancia.rows[1].cells[0].innerHTML = Math.round(tableComparacion.rows[1].cells[0].innerHTML/tableComparacion.rows[1].cells[1].innerHTML);
 
 }
 
@@ -839,6 +913,43 @@ function getIdProd(nombre) {
 //https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/NumberFormat
 
 function informacionMarcas() {
-    var todo = "JOHNNIE WALKER;Cerveza;3|GORDONS; Cerveza; 3|SMIRNOFF; Destilado Nacional; 3|BLACK & WHITE; Destilado Nacional; 1";
+    var todo = "JOHNNIE WALKER;Cerveza;3|GORDONS;Cerveza;3|SMIRNOFF;Destilado Nacional;3|BLACK & WHITE;Destilado Nacional;1";
     return todo;
+}
+function informacionServicios(){
+    var info = "JOHNNIE WALKER;JOHNNIE RED & LEMON;1,2,3;- Llene el vaso con cubos de hielo <br> - Vierta 50 ml de Johnnie Walker Red Label <br>- Llene hasta el tope con gaseosa de lima <br>- Decore con una rodaja de limón <br>;Cerveza;3";
+    var info2 = "GORDONS;GORDONS TONIC;4,5,3;- En un vaso largo o copa globo agrega hielo hasta el tope <br>- Luego agregue 50 ml de Gin Gordon's London Dry y <br>complete con agua tónica <br>- Decore con una rodaja de limón <br>;Cerveza;3";
+    var info3 = "SMIRNOFF;BOTLL SMIRNOFF X1;6;;Destilado Nacional;3";
+    var info4 = "BLACK & WHITE;BOTLL B&W;7;;Destilado Nacional;1";
+
+    var completo = [info,info2 , info3 , info4];
+    return completo;
+}
+function cuadroRentabilidad(){
+
+}
+function addImages(img){
+    var imgDiageo = document.getElementById("imgDiageo");
+    var imgSoV = document.getElementById("imgSoV");
+    imgDiageo.src=img;
+
+    var url_string = window.location.href
+
+    var url = new URL(url_string);
+
+   // var c = url.searchParams.get("source");
+    var c = "Cerveza" ;
+
+    if (c == "Cerveza"){
+        imgSoV.src = "Poker.png";
+    }else if (c == "Destilado Nacional"){
+
+        imgSoV.src = "DestNacional.png";
+    }else{
+
+
+    }
+  
+
+
 }

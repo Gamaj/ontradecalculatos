@@ -1,4 +1,4 @@
-JOHNNIE WALKER;JOHNNIE RED & LEMON;1,2,3;- Llene el vaso con cubos de hielo <br> - Vierta 50 ml de Johnnie Walker Red Label <br>- Llene hasta el tope con gaseosa de lima <br>- Decore con una rodaja de limón <br>;Cerveza;3
-GORDONS;GORDONS TONIC;4,5,3;- En un vaso largo o copa globo agrega hielo hasta el tope <br>- Luego agregue 50 ml de Gin Gordon's London Dry y <br>complete con agua tónica <br>- Decore con una rodaja de limón <br>;Cerveza;3
-SMIRNOFF;BOTLL SMIRNOFF X1;6;;Destilado Nacional;3
-BLACK & WHITE;BOTLL B&W;7;;Destilado Nacional;2
+JOHNNIE WALKER;JOHNNIE RED & LEMON;1,2,3;- Llene el vaso con cubos de hielo <br> - Vierta 50 ml de Johnnie Walker Red Label <br>- Llene hasta el tope con gaseosa de lima <br>- Decore con una rodaja de limón <br>;Cerveza;3;JRL.png
+GORDONS;GORDONS TONIC;4,5,3;- En un vaso largo o copa globo agrega hielo hasta el tope <br>- Luego agregue 50 ml de Gin Gordon's London Dry y <br>complete con agua tónica <br>- Decore con una rodaja de limón <br>;Cerveza;3;GT.png
+SMIRNOFF;BOTLL SMIRNOFF X1;6;;Destilado Nacional;3;SmirnoffX1png.png
+BLACK & WHITE;BOTLL B&W;7;;Destilado Nacional;1;B&W.png
