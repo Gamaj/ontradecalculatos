@@ -31,14 +31,26 @@
 
     <script type="text/javascript" src="code.js"></script>
     <style>
-        img {
+* {
+  box-sizing: border-box;
+}
 
-            width: 100%;
+.col-container {
+  display: table;
+  width: 100%;
+}
+.col {
+  display: table-cell;
+  padding: 16px;
+}
 
-            height: 400px;
-
-        }
-    </style>
+@media only screen and (max-width: 600px) {
+  .col { 
+    display: block;
+    width: 100%;
+  }
+}
+</style>
 
 </head>
 
@@ -56,62 +68,92 @@
 
             </div>
 
-            <div class="col-md-auto">
+            <div class="col-12 col-md-8">
                 <br>
                 <br>
+                <div class="text-center">
+                     <img style = " width: 100%;height:100%;" src="Diageo.svg.png"> <br><br>
+
+                    <h3 id="tituloComp" style="font-family:Georgia;">TITULO </h3>
+
+                    </div><br>
                 <div class="row">
+                    
                     <div class="col">
-                        <img id= "imgDiageo">
+                        <img id= "imgDiageo" style=" max-width: 100%; height: 350px;">                
                     </div>
                     <div class="col-6">
-                        <table id="Comparacion" class="table table-bordered">
+                        <table id="Comparacion" class="table table-bordered"  style="max-width: 100%;">
                             <thead class="thead-dark">
                                 <tr>
 
-                                    <th scope="col" colspan="2">RENTABILIDAD DIAGEO VS CERVEZA</th>
+                                    <th scope="col" colspan="3" style="text-align: center">RENTABILIDAD</th>
                                 </tr>
                                 <tr>
-                                    <th scope="col" >DIAGEO</th>
-                                    <th scope="col">OTRO</th>
+                                    <th scope="col" style="text-align: center">DIAGEO</th>
+                                    <th scope="col" style="text-align: center">OTRO</th>
+                                    
                                 </tr>
+                            </thead>
                             <tbody> 
                                     <tr>
-                                            <td>DIAGEO</td>
-                                            <td>OTRO</td>
+                                            <td align="center">DIAGEO</td>
+                                            <td align="center">OTRO</td>
                                     </tr>
                             </tbody>
-                            </thead>
+                            
 
                         </table>
 
-                        <table id="Ganancia" class="table table-bordered">
+                        <table id="Ganancia" class="table table-bordered"  style="max-width: 100%;">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th scope="col" >% GANANCIA DIAGEO VS CERVEZA</th>
+                                        <th scope="col" colspan="2" style="text-align: center">COMPARACIÓN GANANCIA CON DIAGEO</th>
                                     </tr>
+                                    <tr>
+                                        <th scope="col" style="text-align: center">%</th>
+                                        <th scope="col" style="text-align: center">DIFERENCIA</th>
+                                    
+                                    </tr>
+                                </thead>
                                 <tbody> 
                                         <tr>
                                                 <td align="center">64%</td>
+                                                <td align="center">5000</td>
                                                 
                                         </tr>
                                 </tbody>
-                                </thead>
+                                
     
                             </table>
+                            
+                    <div class="text-center">
+
+                    <button type="button" onclick="window.location.href='index.html'"
+                        class="btn btn-danger center-block">Atrás</button>
+
+                    </div><br>
                     </div>
                     <div class="col">
-                        <img   id= "imgSoV">
+                        <img   id= "imgSoV" style = "max-width: 100%; height: 350px;">
                     </div>
                 </div>
-
-                <br>
-
-                <h5>Llene los campos que se encuentran en color amarillo.</h5>
-
-                <br>
-
-
-                <table id="Prod" class="table table-bordered">
+                <div class="row">
+                    <div class="col">
+        
+                        <h5 style="font-family:Georgia;">Puede editar los campos que se encuentran en color amarillo.</h5>
+        
+                    </div>
+                </div>                
+                <div class="row">
+                    <div class="col">
+                    <div class="text">
+        
+                        <h3 style="font-family:Georgia;">Productos</h3>
+        
+                    </div>
+                        
+                <table id="Prod" class="table table-bordered"  style="width: 100%;">
 
                     <thead class="thead-dark">
 
@@ -128,6 +170,7 @@
                             <th scope="col">VALORxUNIDAD</th>
 
                         </tr>
+                     </thead>
 
                     <tbody>
 
@@ -137,7 +180,7 @@
 
 
 
-                    </thead>
+                   
 
                 </table>
 
@@ -146,10 +189,17 @@
                     <button type="button" onclick="myFunction()" class="btn btn-danger center-block">Calcular</button>
 
                 </div><br>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                <div class="text">
+        
+                        <h3 style="font-family:Georgia;">Servicio</h3>
+        
+                </div>
 
-
-
-                <table id="Ingredientes" class="table table-bordered">
+                <table id="Ingredientes" class="table table-bordered"  style="width: 100%;">
 
                     <thead class="thead-dark">
 
@@ -166,7 +216,7 @@
                             <th scope="col">TOTAL</th>
 
                         </tr>
-
+                    </thead>
                     <tbody>
 
 
@@ -263,13 +313,12 @@
 
                         </tr>
 
-
+                       
 
                     </tbody>
 
-                    </tr>
 
-                    </thead>
+                   
 
                 </table>
 
@@ -280,10 +329,18 @@
                     <button type="button" onclick="reCalcular()" class="btn btn-danger center-block">Calcular</button>
 
                 </div><br>
-
-
-
-                <table id="SofVolume" class="table table-bordered">
+                
+                </div>
+                </div>
+                
+                <div class="row">
+                <div class="col">
+                <div class="text">
+        
+                        <h3 style="font-family:Georgia;">Fuente de volumen</h3>
+        
+                </div>
+                <table id="SofVolume" class="table table-bordered" style="width: 100%;">
 
                     <thead class="thead-dark">
 
@@ -297,7 +354,7 @@
 
                             <th scope="col">INGREDIENTE</th>
 
-                            <th scope="col">COSTOxUNIDAD</th>
+                            <th scope="col">COSTO</th>
 
                             <th scope="col">UN.MEDIDA</th>
 
@@ -308,6 +365,7 @@
                             <th scope="col">TOTAL</th>
 
                         </tr>
+                    </thead>
 
                     <tbody>
 
@@ -424,10 +482,7 @@
 
 
                     </tbody>
-
-                    </tr>
-
-                    </thead>
+                    
 
                 </table>
 
@@ -437,6 +492,9 @@
                         class="btn btn-danger center-block">Calcular</button>
 
                 </div><br>
+                
+                </div>
+                </div>
 
 
 
@@ -455,8 +513,6 @@
 
 
     </div>
-
-
 
 
 

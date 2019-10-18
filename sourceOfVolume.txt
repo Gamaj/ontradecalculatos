@@ -1,4 +1,4 @@
-1;Cerveza Nacional;2167;ML;330;CERVEZA;8000;- Club Colombia<br>- Póker<br>- Águila<br>- Entre otros
+1;Cerveza Importada;2167;ML;330;CERVEZA;8000;- BBC<br>- Tres Cordilleras<br>- Corona<br>- Stella Artois<br>- Peronis<br>- Heineken<br>- Entre otros
 4;Cerveza Importada;3667;ML;330;CERVEZA;12000;- BBC<br>- Tres Cordilleras<br>- Corona<br>- Stella Artois<br>- Peronis<br>- Heineken<br>- Entre otros
 2;Ron/Aguardiente;35000;ML;750;DESTILADO NACIONAL;80000;- Antioqueño<br>- Néctar<br>- Viejo de Caldas<br>- Medellín<br>- Entre otros
 3;Whisky/GIN;75000;ML;750;DESTILADO IMPORTADO;20000;- Absolut<br>- Chivas<br>- Beefeater<br>- Jose Cuervo<br>- Entre otros

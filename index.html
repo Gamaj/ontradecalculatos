@@ -40,6 +40,26 @@
                         height: auto;
 
                 }
+                
+* {
+  box-sizing: border-box;
+}
+
+.col-container {
+  display: table;
+  width: 100%;
+}
+.col {
+  display: table-cell;
+  padding: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  .col { 
+    display: block;
+    width: 100%;
+  }
+}
         </style>
 
 
@@ -60,7 +80,7 @@
 
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-12 col-md-8">
 
                                 <img src="DIAGEO.jpg">
 
@@ -76,15 +96,15 @@
 
                                         <select id="Subsegmento" onchange="estratos()" class="custom-select">
                                                 <option selected>Seleccione Subsegmento</option>
-                                                <option value="1"> Bar Élite</option>
+                                            <!--     <option value="1"> Bar Élite</option> -->
                                                 <option value="2"> Bar Estandár</option>
-                                                <option value="3"> Discoteca Élite</option>
+                                             <!--    <option value="3"> Discoteca Élite</option> -->
                                                 <option value="4"> Discoteca Estandár</option>
                                                 <option value="5"> Licobares</option>
-                                                <option value="6"> Juegos típicos</option>
-                                                <option value="7"> Repostería y café</option>
+                                               <option value="6"> Juegos típicos</option>
+                                            <!--    <option value="7"> Repostería y café</option>-->
                                                 <option value="8"> Restaurante Casual</option>
-                                                <option value="9"> Restaurante Élite</option>
+                                            <!--   <option value="9"> Restaurante Élite</option>-->
                                                 <option value="10"> Restaurante Formal</option>
                                         </select>
 
@@ -103,7 +123,7 @@
 
                                         </div>
 
-                                        <select id="estrato" class="custom-select">
+                                        <select id="estrato"  onchange="cambioASOV()" class="custom-select">
 
                                                 <option selected>Seleccione Estrato</option>
 
@@ -132,11 +152,11 @@
 
                                                 <option selected>Seleccione Fuente de Volumen</option>
 
-                                                <option value="Cerveza">Cerveza</option>
+                                                <option value="Cerveza">Cerveza Importada</option>
 
                                                 <option value="Destilado Nacional">Destilado Nacional</option>
 
-                                                <option value="Destilado Importado">Destilado Importado</option>
+                                          <!--       <option value="Destilado Importado">Destilado Importado</option>-->
 
                                         </select>
 

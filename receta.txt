@@ -2,3 +2,4 @@ JOHNNIE WALKER;JOHNNIE RED & LEMON;1,2,3;- Llene el vaso con cubos de hielo <br>
 GORDONS;GORDONS TONIC;4,5,3;- En un vaso largo o copa globo agrega hielo hasta el tope <br>- Luego agregue 50 ml de Gin Gordon's London Dry y <br>complete con agua tónica <br>- Decore con una rodaja de limón <br>;Cerveza;3;GT.png
 SMIRNOFF;BOTLL SMIRNOFF X1;6;;Destilado Nacional;3;SmirnoffX1png.png
 BLACK & WHITE;BOTLL B&W;7;;Destilado Nacional;1;B&W.png
+BLACK & WHITE;TRAGO B&W;7;;Cerveza;1;B&W.png
