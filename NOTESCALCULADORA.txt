@@ -1,0 +1,10 @@
+1.	Filtrar las imágenes para que queden bien y las del Source of volumen no se vean más grandes
+2.	Antes de empezar con productos debe quedar claro que este es el servicio de Gordon´s. entonces que quede el nombre del producto del que se va a sacar la información:
+3.	Me volvieron a salir los decimales, eliminémoslos 
+4.	Que cuando pongamos el precio de Aguardiente quede el mismo precio en Smirnoff X1 botella
+5.	Que cuando pongamos el precio de cerveza Premium quede el mismo en el trago de Black&White
+6.	¿Cómo vamos hacer con los videos?
+7.	Que quede la recomendación de nosotros si no saben los precios.
+Hola!!! La reunión con Juan fue super, le encanto la herramienta.
+Anexo la base incluí OP botella y mezcla, JWRED Botella Y Haig por el momento. **todo esta en rojo
+
