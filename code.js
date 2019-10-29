@@ -152,6 +152,8 @@ function CargaProductos() {
     }else if (c == "TRAGO B") {
         c = "TRAGO B&W";
     }
+    
+    
 
     addSourceOfVolume();
 
@@ -184,6 +186,7 @@ function CargaProductos() {
                         searchProducts(separado[2]);
 
                         addImages(separado[6]);
+                        addVideo(c);
 
                     }
 
@@ -226,6 +229,9 @@ function refreshRentabilidad(){
     var i =  ingredientes.rows.length - 9;
     var titulo = document.getElementById("tituloComp");
     titulo.innerText =  c +  " VS " +  source.toUpperCase();
+    
+    var tituloproducto = document.getElementById("labelProducto");
+    tituloproducto.innerText = "Productos " + c.toLowerCase();
   //  tableComparacion.rows[0].cells[0].innerHTML = "RENTABILIDAD "+ "<br>" + c +  " VS " +  source.toUpperCase();
     // Rent Diageo
     tableComparacion.rows[1].cells[0].innerHTML = c;
@@ -301,7 +307,13 @@ function addSourceOfVolume() {
                     var separado = linea[i].split(";");
 
                     if (c == separado[0]) {
-
+                        
+                        if (costosource == ""){
+                            costosource = separado[2];
+                        }
+                        if (preciosource == ""){
+                            preciosource = separado[6];
+                        }
                         var table = document.getElementById("SofVolume");
 
                         table.rows[0].cells[0].innerHTML = "RENTABILIDAD " + separado[5];
@@ -340,8 +352,6 @@ function addSourceOfVolume() {
 
                         cell6.innerHTML = costosource;
 
-
-
                         document.getElementById("SofVolume").rows[10].cells[1].innerHTML = preciosource;
 
                         document.getElementById("observaciones").innerHTML = separado[7];
@@ -377,7 +387,7 @@ function addReceta(preparacion) {
 function searchProducts(x) {
 
     var rawFile = new XMLHttpRequest();
-
+    x=x.split(",");
     rawFile.open("GET", "Prodcuto.csv", false);
 
     rawFile.onreadystatechange = function () {
@@ -397,8 +407,8 @@ function searchProducts(x) {
                     var separado = linea[i].split(",");
 
                     for (var j = 0; j < x.length; j++) {
-
-
+                        console.log(x[j] + " " + separado[0] );
+        
 
                         if (x[j] == separado[0]) {
 
@@ -557,6 +567,8 @@ function calcRentabilidad() {
     var costopro = suma + (suma * 0.05);
 
     //  costopro = new Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD' }).format(costopro);
+    
+    
 
     table.rows[i].cells[2].innerHTML = insertarFormatoPesos2(suma);
 
@@ -595,6 +607,8 @@ function myFunction() {
     var url = new URL(url_string);
 
     var c = url.searchParams.get("servicio");
+    
+    var venta = url.searchParams.get("precio");
 
 
    // var c = alternativa;
@@ -701,18 +715,24 @@ function myFunction() {
     calcRentabilidad();
 
     var precio = getCantProd("Precio", c);
+    
 
     if (ingredientes.rows[i + 4].cells[1].innerHTML == ""){
+        if ((c=="BOTLL SMIRNOFF X1" || c == "TRAGO B&W") && venta != ""){
+            precio = venta;
+        }
+        console.log(precio + "precio ");
         ingredientes.rows[i + 4].cells[1].innerHTML = precio;
-         ingredientes.rows[i + 4].cells[1].contentEditable = "true";
+        
+        ingredientes.rows[i + 4].cells[1].contentEditable = "true";
 
     ingredientes.rows[i + 4].cells[1].style.backgroundColor = "#EEFFA1";
 
     var totalCostoProd = retirarFormatoPesos(ingredientes.rows[i + 3].cells[1].innerHTML);
 
-    ingredientes.rows[i + 5].cells[1].innerHTML = precio * 0.08;
+    ingredientes.rows[i + 5].cells[2].innerHTML = precio * 0.08;
 
-    ingredientes.rows[i + 6].cells[1].innerHTML = precio - retirarFormatoPesos(ingredientes.rows[i + 5].cells[1].innerHTML) - totalCostoProd;
+    ingredientes.rows[i + 6].cells[1].innerHTML = precio - retirarFormatoPesos(ingredientes.rows[i + 5].cells[2].innerHTML) - totalCostoProd;
 
 
 
@@ -721,7 +741,7 @@ function myFunction() {
     ingredientes.rows[i + 8].cells[1].innerHTML = Math.round((ingredientes.rows[i + 6].cells[1].innerHTML / precio) * 100) + "%";
     
     ingredientes.rows[i + 6].cells[1].innerHTML = insertarFormatoPesos2(  ingredientes.rows[i + 6].cells[1].innerHTML);
-    ingredientes.rows[i + 5].cells[1].innerHTML = insertarFormatoPesos2(  ingredientes.rows[i + 5].cells[1].innerHTML);
+    ingredientes.rows[i + 5].cells[2].innerHTML = insertarFormatoPesos2(  ingredientes.rows[i + 5].cells[2].innerHTML);
     
     
     refreshRentabilidad();
@@ -763,10 +783,10 @@ function reCalcular() {
 
     ingredientes.rows[i + 4].cells[1].style.backgroundColor = "#EEFFA1";
 
-    ingredientes.rows[i + 5].cells[1].innerHTML = insertarFormatoPesos2(precio * 0.08);
+    ingredientes.rows[i + 5].cells[2].innerHTML = insertarFormatoPesos2(precio * 0.08);
     var totalCostoProd = retirarFormatoPesos(ingredientes.rows[i + 3].cells[1].innerHTML);
 
-    ingredientes.rows[i + 6].cells[1].innerHTML = precio - retirarFormatoPesos(ingredientes.rows[i + 5].cells[1].innerHTML) - totalCostoProd;
+    ingredientes.rows[i + 6].cells[1].innerHTML = precio - retirarFormatoPesos(ingredientes.rows[i + 5].cells[2].innerHTML) - totalCostoProd;
 
     ingredientes.rows[i + 7].cells[1].innerHTML = Math.round((totalCostoProd / precio) * 100) + "%";
 
@@ -1054,11 +1074,61 @@ function addImages(img){
     }else if (c == "Destilado Nacional"){
 
         imgSoV.src = "DestNacional.png";
-    }else{
+    }else if (c == "Destilado Importado"){
+        imgSoV.src = "DestImportado.png";
 
 
     }
-  
+}
+
+function addVideo(video){
+    
+    var vid = document.getElementById("video");
+    vid.innerHTML = "";
+    
+    var rawFile = new XMLHttpRequest();
+
+    rawFile.open("GET", "Videos.txt", false);
+
+    rawFile.onreadystatechange = function () {
+
+        if (rawFile.readyState === 4) {
+
+            if (rawFile.status === 200 || rawFile.status == 0) {
+
+                var allText = rawFile.responseText;
+
+                var linea = allText.split("\n");
+
+                for (var i = 0; i < linea.length; i++) {
 
 
+
+                    var separado = linea[i].split("|");
+                   
+                  //  console.log("getId " + separado[0]  + " Nombre " + nombre + " arch " + separado[1] );
+
+                    if (video == separado[0]) {
+
+                    //    console.log("getId " + separado[0] );
+
+                         vid.innerHTML = separado[1];
+
+                        return;
+
+                    }
+
+                }
+
+
+
+            }
+
+        }
+
+    }
+
+    rawFile.send(null);
+ 
+    
 }

@@ -1,9 +1,9 @@
-JOHNNIE WALKER;JOHNNIE RED & LEMON;1,2,3;- Llene el vaso con cubos de hielo <br> - Vierta 50 ml de Johnnie Walker Red Label <br>- Llene hasta el tope con gaseosa de lima <br>- Decore con una rodaja de limón <br>;Cerveza;3;JRL.png
-GORDONS;GORDONS TONIC;4,5,3;- En un vaso largo o copa globo agrega hielo hasta el tope <br>- Luego agregue 50 ml de Gin Gordon's London Dry y <br>complete con agua tónica <br>- Decore con una rodaja de limón <br>;Cerveza;3;GT.png
-SMIRNOFF;BOTLL SMIRNOFF X1;6;;Destilado Nacional;3;SmirnoffX1png.png
-BLACK & WHITE;BOTLL B&W;7;;Destilado Nacional;1;B&W.png
-BLACK & WHITE;TRAGO B&W;7;;Cerveza;1;B&W.png
-OLD PARR;BOTLL OLD PARR;8;;Destilado Importado;2;
-OLD PARR;OLD PARR BEER;8,9,3;;Cerveza;2;
-JOHNNIE WALKER;BOTLL JOHNNIE WALKER RED;1;;Destilado Nacional;2;
-HAIG;H.O.T;10,5,11;;Cerveza;2;
+JOHNNIE WALKER;JOHNNIE RED & LEMON;1,2,3;- Llene el vaso con cubos de hielo <br> - Vierta 50 ml de Johnnie Walker Red Label <br>- Llene hasta el tope con gaseosa de lima <br>- Decore con una rodaja de limón <br>;Cerveza;3;JRL.png;
+GORDONS;GORDONS TONIC;4,5,3;- En un vaso largo o copa globo agrega hielo hasta el tope <br>- Luego agregue 50 ml de Gin Gordon's London Dry y <br>complete con agua tónica <br>- Decore con una rodaja de limón <br>;Cerveza;3;GT.png;
+SMIRNOFF;BOTLL SMIRNOFF X1;6;;Destilado Nacional;3;SmirnoffX1png.png;
+BLACK & WHITE;BOTLL B&W;7;;Destilado Nacional;1;B&W.png;
+BLACK & WHITE;TRAGO B&W;7;;Cerveza;1;B&W.png;
+OLD PARR;BOTLL OLD PARR;8;;Destilado Importado;2;OP12.png;
+OLD PARR;OLD PARR BEER;8,9,3;;Cerveza;2;OP12.png;
+JOHNNIE WALKER;BOTLL JOHNNIE WALKER RED;1;;Destilado Nacional;2;JWRed.png;
+HAIG CLUB;H.O.T;10,5,11;- En una copa de vino agrega hielo hasta el borde.<br>  - Agrega 50 ml de Whisky Haig Club.<br> - Completa con agua tónica.<br> - Decora con una media luna de naranja;Cerveza;2;HClub.png;
