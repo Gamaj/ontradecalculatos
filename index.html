@@ -96,15 +96,15 @@
 
                                         <select id="Subsegmento" onchange="estratos()" class="custom-select">
                                                 <option selected>Seleccione Subsegmento</option>
-                                            <!--     <option value="1"> Bar Élite</option> -->
+                                               <option value="1"> Bar Élite</option> 
                                                 <option value="2"> Bar Estandár</option>
-                                             <!--    <option value="3"> Discoteca Élite</option> -->
+                                                <option value="3"> Discoteca Élite</option> 
                                                 <option value="4"> Discoteca Estandár</option>
                                                 <option value="5"> Licobares</option>
                                                <option value="6"> Juegos típicos</option>
                                             <!--    <option value="7"> Repostería y café</option>-->
                                                 <option value="8"> Restaurante Casual</option>
-                                            <!--   <option value="9"> Restaurante Élite</option>-->
+                                            <option value="9"> Restaurante Élite</option>
                                                 <option value="10"> Restaurante Formal</option>
                                         </select>
 
@@ -213,7 +213,7 @@
 
 
 
-                                        <button onclick="window.location.href='Productos.html?servicio=' + document.getElementById('servicios').value + '&source=' +document.getElementById('SourceOfVolume').value + '&costo='+ document.getElementById('costo').value + '&precio=' + document.getElementById('precio').value"
+                                        <button onclick="window.location.href='Productos.html?servicio=' + encodeURIComponent(document.getElementById('servicios').value) + '&source=' +document.getElementById('SourceOfVolume').value + '&costo='+ document.getElementById('costo').value + '&precio=' + document.getElementById('precio').value"
                                                 type="button" class="btn btn-danger center-block">Calcular</button>
 
                                 </div><br>

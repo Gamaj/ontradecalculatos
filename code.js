@@ -1038,7 +1038,7 @@ function cambioASOV(){
 
 
 function informacionMarcas() {
-    var todo = "JOHNNIE WALKER;Cerveza;2;2,8,10,5|GORDONS;Cerveza;2;2,8,10,5|SMIRNOFF;Destilado Nacional;1;4,5,6,8,10,2|BLACK & WHITE;Destilado Nacional;1;4,5,6,8,10,2|BLACK & WHITE;Cerveza;1;4,5,6,8,10,2|OLD PARR;Destilado Importado;2;4|OLD PARR;Cerveza;2;2,4|JOHNNIE WALKER;Destilado Importado;2;4|JOHNNIE WALKER;Destilado Nacional;2;4|HAIG CLUB;Cerveza;2;2,8,10";
+    var todo = "JOHNNIE WALKER;Cerveza;2;2,8,10,5|GORDONS;Cerveza;2;2,8,10,5|SMIRNOFF;Destilado Nacional;1;4,5,6,8,10,2|BLACK & WHITE;Destilado Nacional;1;4,5,6,8,10,2|BLACK & WHITE;Cerveza;1;4,5,6,8,10,2|OLD PARR;Destilado Importado;2;3,4|OLD PARR;Cerveza;2;2,4|JOHNNIE WALKER;Destilado Importado;2;4|JOHNNIE WALKER;Destilado Nacional;2;4|HAIG CLUB;Cerveza;2;2,8,10|SMIRNOFF;Destilado Nacional;2;2,5|BLACK & WHITE;Destilado Nacional;2;2,5|DON JULIO;Destilado Importado;2;1, 9|TANQUERAY;Destilado Importado;2;1,9|BULLEIT;Destilado Importado;2;1,9|SINGLETON;Destilado Importado;2;1,9|ZACAPA;Destilado Importado;2;1,9|BUCHANAN´S;Destilado Importado;2;1,9";
     return todo;
 }
 function informacionServicios(){
@@ -1052,8 +1052,24 @@ function informacionServicios(){
     var info8 = "JOHNNIE WALKER;BOTLL JOHNNIE WALKER RED;1;;Destilado Nacional;2;4";
     var info9 = "JOHNNIE WALKER;BOTLL JOHNNIE WALKER RED;1;;Destilado Importado;2;4";
     var info10 = "HAIG CLUB;H.O.T;10,5,11;;Cerveza;2;2,8,10";
+    var info11 = "BLACK & WHITE;BOTLL B&W;7;;Destilado Nacional;2;2,5";
+    var info12 = "DON JULIO;LUPE DON JULIO BLANCO;13,17,12;;Destilado Importado;2;1,9";
+    var info13 = "DON JULIO;PALOMA DON JULIO REPOSADO;14,12,15,16,5;;Destilado Importado;2;1,9";
+    var info14 = "TANQUERAY;TEA TEN;18,5,19;;Destilado Importado;2;1,9";
+    var info15 = "TANQUERAY;TANQUERAY RANGPUR & TONIC;20,5,11;;Destilado Importado;2;1,9";
+    var info16 = "TANQUERAY;TANQUERAY & TONIC;21,5,11;;Destilado Importado;2;1,9";
+    var info17 = "TANQUERAY;TANQUERAY & TONIC;21,5,11;;Cerveza;2;1,9,10";
+    var info18 = "BULLEIT;BULLEIT & BEER;22,23,11;;Destilado Importado;2;1,9";
+    var info19 = "SINGLETON;SINGLETON PENICILIN;24,25,17,26;;Destilado Importado;2;1,9";
+    var info20=  "SINGLETON;TRAGO SINGLETON;24;;Destilado Importado;2;1,9";
+    var info21 = "ZACAPA;MOJITO ZACAPA AMBAR;27,17,12,28;;Destilado Nacional;2;1,9,10";
+    var info22 = "ZACAPA;MOJITO ZACAPA AMBAR;27,17,12,28;;Destilado Importado;2;1,9";
+    var info24 = "OLD PARR;BOTLL OLD PARR 18;30;;Destilado Importado;2;3";
+    var info23 = "BUCHANAN´S;TRAGO BUCHANAN´S 18;29;;Destilado Importado;2;1,9";
+    
+    
 
-    var completo = [info,info2 , info3 , info4, info5,info6,info7,info8,info9,info10];
+    var completo = [info,info2 , info3 , info4, info5,info6,info7,info8,info9,info10,info11,info12,info13,info14,info15,info16,info17,info18,info19,info20,info21,info22,info23,info24];
     return completo;
 }
 
